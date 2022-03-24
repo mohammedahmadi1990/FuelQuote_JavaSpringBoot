@@ -1,0 +1,95 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Login Page | FuelQuote</title>
+    <link
+            rel="stylesheet"
+            href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">FuelQuote</a>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/request}">Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/requests}">History</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class="container" style="text-align: center;">
+    <div class="card border-success" style="max-width: 30rem;margin-left: auto;margin-right: auto;">
+        <div class="card-header" style="text-align: center">
+            Fuel Quote Management System
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">User Login Form</h4>
+            <form th:action="@{/login}" method="post">
+
+                <!-- error message -->
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid username or
+                        password.</div>
+                </div>
+
+                <!-- logout message -->
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">You have been logged out.</div>
+                </div>
+
+                <div class = "form-group">
+                    <input type="text" class = "form-control" id ="username" name = "username"
+                           placeholder="Enter Username" autofocus="autofocus">
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password"
+                        id="password" name="password" class="form-control"
+                            placeholder="Enter Password" />
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="reset" name="login-reset" id="login-reset"
+                                   class="form-control btn btn-secondary" value="Reset" />
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   class="form-control btn btn-primary" value="Log In" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="caption">
+        <a href="/" th:href="@{/registration}" style="font-size: 12px">Click here to register!</a>
+    </div>
+</div>
+</div>
+</body>
+</html>

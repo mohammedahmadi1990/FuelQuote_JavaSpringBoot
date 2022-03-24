@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Fuel Quote History | FuelQuote</title>
+
+    <link
+            rel="stylesheet"
+            href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">FuelQuote</a>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/request}">Request</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/requests}">History</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;color: white">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:alt="Logout">Log-out:
+                    <span sec:authentication="principal.username"></span>
+                    <i class="fa fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class="container">
+    <div class="card border-success" style="max-width: 70rem; margin-right: auto;margin-left: auto;">
+        <div class="card-header" style="text-align: center;font-size: 18px">Fuel Quote History</div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Requested (gls)</th>
+                    <th scope="col">Delivery Address</th>
+                    <th scope="col">Delivery Date</th>
+                    <th scope="col">Price (gls)</th>
+                    <th scope="col">Total Amount Due</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr scope="row" th:each="quote : ${quoteList}">
+                    <th scope="row" th:text=" ${quote.getId()}">ID</th>
+                    <td th:text="${quote.getRequestedGallon()}">Requested Gallons</td>
+                    <td th:text="${quote.getDeliveryAddress()}">Delivery Address</td>
+                    <td th:text="${quote.getDeliveryDate()}">Delivery Date</td>
+                    <td th:text="'&#36;'+'&nbsp;' + ${quote.getPricePerGallon()}">Price Per Gallon</td>
+                    <td th:text="'&#36;'+'&nbsp;' + ${quote.getTotalAmount()}">Total Amount</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

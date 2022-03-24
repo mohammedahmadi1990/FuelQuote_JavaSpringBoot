@@ -1,0 +1,74 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Profile | FuelQuote</title>
+
+    <link
+            rel="stylesheet"
+            href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">FuelQuote</a>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/request}">Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/requests}">History</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;color: white">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:alt="Logout">Log-out:
+                    <span sec:authentication="principal.username"></span>
+                    <i class="fa fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br><br>
+<div class="container">
+    <div class="card border-success" style="max-width: 70rem;margin-left: auto;margin-right: auto">
+        <div class="card-header" style="text-align: center">User Profile</div>
+        <div class="card-body">
+            <h4 class="card-title" th:text="${currentUser.getFullName()}"></h4>
+            <div class="card card-body mb-3" style="margin-top: -8px">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class="img-fluid mb-2" src="/img/avatar.png" />
+                    </div>
+                    <div class="col-md-9">
+                        <ul>
+                            <li class="list-group-item" th:text="'Address Line 1: ' + ${currentUser.getAddress01()}"></li>
+                            <li class="list-group-item" th:text="'Address Line 2: ' + ${currentUser.getAddress02()}"></li>
+                            <li class="list-group-item" th:text="'City: ' + ${currentUser.getCity()}"></li>
+                            <li class="list-group-item" th:text="'State: ' + ${currentUser.getState()}"></li>
+                            <li class="list-group-item" th:text="'Zip Code: ' + ${currentUser.getZipcode()}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>User Portal</title>
+    <link
+            rel="stylesheet"
+            href="https://bootswatch.com/5/quartz/bootstrap.min.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">FuelQuote</a>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/}">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/request}">Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/requests}">History</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;color: white">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}" th:alt="Logout">Log-out:
+                    <span sec:authentication="principal.username"></span>
+                    <i class="fa fa-user"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container" style="text-align: center;font-size: 20px;">
+    <h1 style="color: white">WELCOME TO FUEL QUOTE MANAGEMENT APPLICATION</h1>
+    You have logged-in as <span sec:authentication="principal.username"></span>.
+</div>
+</body>
+</html>

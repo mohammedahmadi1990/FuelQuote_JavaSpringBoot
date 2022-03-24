@@ -1,0 +1,40 @@
+body {
+  background: url("/img/bg3.png") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.card {
+  margin: 140px auto;
+  float: none;
+}
+
+.caption {
+  position: relative;
+  bottom: 125px;
+  font-size: small;
+  text-align: center;
+}
+
+.foot_note {
+  font-size: small;
+  text-align: center;
+  color: gainsboro;
+}
+
+#btn {
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#btn:hover {
+  color: rgb(31, 201, 102);
+}
+
+.loginT {
+  font-size: 12px;
+  padding-top: 20px;
+}
